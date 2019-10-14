@@ -10,8 +10,8 @@ using ProductApi.Data;
 namespace ProductApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191014022125_Initial")]
-    partial class Initial
+    [Migration("20191014030625_Initial2")]
+    partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace ProductApi.Migrations
 
                     b.Property<decimal>("Price")
                         .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
-                        .HasColumnType("decimal");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -47,14 +47,14 @@ namespace ProductApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2019, 10, 13, 22, 21, 24, 939, DateTimeKind.Local).AddTicks(2216),
+                            CreateDate = new DateTime(2019, 10, 13, 23, 6, 25, 135, DateTimeKind.Local).AddTicks(7919),
                             Description = "Arroz La Garza",
                             Price = 26.95m
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2019, 10, 13, 22, 21, 24, 940, DateTimeKind.Local).AddTicks(767),
+                            CreateDate = new DateTime(2019, 10, 13, 23, 6, 25, 136, DateTimeKind.Local).AddTicks(6881),
                             Description = "Huevo, Carton",
                             Price = 102.95m
                         });

@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductApi.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductApi.Data
 {
@@ -27,7 +24,7 @@ namespace ProductApi.Data
 
             modelBuilder.Entity<Product>()
              .Property(x => x.Price)
-             .HasColumnType("decimal");
+             .HasColumnType("decimal(10,2)");
 
             modelBuilder.Entity<Product>()
                 .HasData(

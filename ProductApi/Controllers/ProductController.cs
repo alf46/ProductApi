@@ -42,6 +42,25 @@ namespace ProductApi.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, [FromBody] Product product)
+        {
+            _context.Entry(product).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var productDb = await _context.Products.FindAsync(id);
+
+            if (productDb == null)
+                return NotFound();
+
+            _context.Entry(productDb).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
     }
 }
