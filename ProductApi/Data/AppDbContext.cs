@@ -23,26 +23,19 @@ namespace ProductApi.Data
                 .IsRequired();
 
             modelBuilder.Entity<Product>()
-             .Property(x => x.Price)
-             .HasColumnType("decimal(10,2)");
+                .Property(x => x.Price)
+                .HasColumnType("decimal(10,2)");
 
             modelBuilder.Entity<Product>()
-                .HasData(
-                    new Product
-                    {
-                        Id = 1,
-                        Description = "Arroz La Garza",
-                        CreateDate = DateTime.Now,
-                        Price = 26.95
-                    },
-                    new Product
-                    {
-                        Id = 2,
-                        Description = "Huevo, Carton",
-                        CreateDate = DateTime.Now,
-                        Price = 102.95
-                    }
-                );
+                .Property(x => x.CreateDate)
+                .HasDefaultValueSql("getdate()")
+                .IsRequired();
+
+            modelBuilder.Entity<Product>()
+                .HasOne(x => x.Category)
+                .WithMany(x => x.Products)
+                .HasForeignKey(x => x.CategoryId)
+                .HasConstraintName("FK_Cat_Prod");
         }
     }
 }
